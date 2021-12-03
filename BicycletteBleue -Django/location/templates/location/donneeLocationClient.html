@@ -1,0 +1,61 @@
+<!---
+Auteur : Daniele Castro
+-->
+
+{% extends 'template_base.html' %}
+{% load static %}
+
+{% block contenu %}
+<!-- Google Font -->
+        <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+        <link href="{% static 'lib/flaticon/font/flaticon.css' %}" rel="stylesheet">
+        <link href="{% static 'lib/animate/animate.min.css' %}" rel="stylesheet">
+        <link href="{% static 'lib/owlcarousel/assets/owl.carousel.min.css' %}" rel="stylesheet">
+
+<br><br>
+<h1 style="margin-left: 21%">Veuillez confirmer vos données personelles :</h1>
+<br>
+<br>
+<h4 style="margin-left: 22%">Vos données : </h4><br>
+
+
+<form style="margin-left: 25% ; margin-right: 30%" action="" method="POST">
+     {%  csrf_token %}
+  <div class="form-group">
+    <label>Nom<sup style="color: red">*</sup> :</label>
+    <input  class="form-control"  placeholder="Votre prenom" for={{clientForm.cli_nom}}
+  </div>
+  <div class="form-group">
+    <label>Prenom<sup style="color: red">*</sup> :</label>
+    <input  class="form-control"  placeholder="Votre nom" for={{clientForm.cli_prenom}}
+  </div>
+  <div class="form-group">
+    <label>E-mail<sup style="color: red">*</sup> :</label>
+    <input  class="form-control"  placeholder="Votre email" for={{clientForm.cli_mail}}
+  </div>
+  <div class="form-group">
+    <label>Adresse<sup style="color: red">*</sup> :</label>
+    <input  class="form-control"  placeholder="Votre adresse" for={{clientForm.cli_adresseposte}}
+  </div>
+  <div class="form-group">
+  <label>Date de naissance<sup style="color: red">*</sup> :</label>
+    <input type="date" class="form-control"  placeholder="Votre date de naissance" for={{clientForm.cli_date_naissance}}
+    <a style="color: red">{{messageErreur}}</a>
+  </div>
+  <div class="form-group">
+    <label>Téléphone<sup style="color: red">*</sup> :</label>
+    <input  class="form-control"  placeholder="Votre numéro de téléphone" for={{clientForm.cli_tel}}
+  </div>
+
+
+  <a href="{% url 'stock_velos:indexDetailsVeloClient' velo.vel_num%}" class="btn btn-primary" role="button" aria-pressed="true" >Annuler</a>
+  <input type="submit" value="Envoyer" class="btn btn-primary" href="{% url 'location:finaliserLocationClient' velo.vel_num%}" >
+
+</form>
+
+
+<br><br> <sup style="color: red ; margin-left: 22%">*Champs obligatoires</sup>
+<br><br>
+<br><br>
+
+{% endblock contenu %}
