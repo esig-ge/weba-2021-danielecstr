@@ -104,4 +104,5 @@ ENV/
 icc/db.sqlite3
 *.pyc
 
+/video tentatives
 
