@@ -14,5 +14,4 @@ urlpatterns = [
     path('réparations/', include('reparation.urls')),
     path('statistique/', include('statistique.urls')),
 
-    path('', include('cal.urls')),  # fatma (22.10)
 ]

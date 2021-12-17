@@ -49,7 +49,6 @@ INSTALLED_APPS = [
     'reparation',
     'statistique',
     'bootstrap_datepicker_plus',
-    'cal.apps.CalConfig', # fatma
 ]
 
 MIDDLEWARE = [
