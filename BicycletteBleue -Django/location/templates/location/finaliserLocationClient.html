@@ -24,16 +24,14 @@ Auteur : Daniele Castro
     <label>Date de debut<sup style="color: red">*</sup> :</label>
     <input  id="dateDebut"class="form-control" type="date" placeholder="Date debut" for={{formLocationVelo.date_debut}}
   </div>
-  <div class="form-group">
+  <div id ="dateFinDiv"class="form-group">
     <label>Date de fin<sup style="color: red">*</sup> :</label>
     <input  id="dateFin"class="form-control" type="date" placeholder="Date fin" for={{formLocationVelo.date_fin}}
   </div>
+
   <a style="color: red">{{messageErreur}}</a><br><br>
      <sup style="color: red ;">*Champs obligatoires</sup>
-      <div id="test1">
 
-
-      </div>
 
       <div style="border: 1px solid">
         <table class="table table-hover">
@@ -67,23 +65,49 @@ Auteur : Daniele Castro
 
 
 <script type="text/javascript">
-      var div = document.getElementById('test1');
+      
+      var newDiv = document.createElement("div");
+      newDiv.setAttribute("id", "divJs");
+      var currentDiv = document.getElementById('dateFinDiv');
+      currentDiv.appendChild(newDiv);
+
+
+
       var dateDebut  = document.getElementById("dateDebut");
       var dateFin   = document.getElementById("dateFin");
+      var textAfficher = ''; // Variable qui permet de stocker ce que nous allons afficher
 
-
+      // Permet d'afficher lorsque nous modifions la date de debut et la date de fin
       function afficher() {
+        // Permet de calculer la différence entre deux dates
+        var diff_en_temps = new Date(dateFin.value).getTime() - new Date(dateDebut.value).getTime();
+        var diff_en_jours = diff_en_temps / (1000 * 3600 * 24);
 
-        var somme = dateFin.value.getTime() - dateDebut.value.getTime();
-        var a = somme / (1000 * 3600 * 24);
-        div.innerHTML = somme / (1000 * 3600 * 24);
+        // Permet de rien afficher si une seule des deux date est entrée.
+        if (isNaN(diff_en_jours)){
+            textAfficher = '';
+        }
+        else{
+            if (diff_en_jours > 365){
 
+              textAfficher = 'ATTENTION : la location ne doit pas dépasser 1 an.';}
+
+
+
+            else if (diff_en_jours > 90){
+              var somme = 50; // les trois mois de départ
+              var jours = diff_en_jours - 90 // enlever les 3 mois minimum pour avoir unqiuement les jours en plus 
+              somme += Math.round(jours / 30) * 5
+              textAfficher = "Totale de la location : "+ somme + " + 150 (la caution) = " + (somme + 150) + " CHF";
+            }
+
+
+            else{textAfficher = 'ATTENTION : la location doit durer au minimum 3 mois.';}
+        }
+        newDiv.innerHTML = textAfficher;
       }
-
       dateDebut.onchange = afficher;
       dateFin.onchange = afficher;
-
-
    </script>
 
 
