@@ -22,16 +22,20 @@ Auteur : Daniele Castro
      {%  csrf_token %}
   <div class="form-group">
     <label>Date de debut<sup style="color: red">*</sup> :</label>
-    <input  class="form-control" type="date" placeholder="Date debut" for={{formLocationVelo.date_debut}}
+    <input  id="dateDebut"class="form-control" type="date" placeholder="Date debut" for={{formLocationVelo.date_debut}}
   </div>
   <div class="form-group">
     <label>Date de fin<sup style="color: red">*</sup> :</label>
-    <input  class="form-control" type="date" placeholder="Date fin" for={{formLocationVelo.date_fin}}
+    <input  id="dateFin"class="form-control" type="date" placeholder="Date fin" for={{formLocationVelo.date_fin}}
   </div>
   <a style="color: red">{{messageErreur}}</a><br><br>
      <sup style="color: red ;">*Champs obligatoires</sup>
-      <div style="border: 1px solid">
+      <div id="test1">
 
+
+      </div>
+
+      <div style="border: 1px solid">
         <table class="table table-hover">
     <thead>
     <h4 style="text-align: center">Rappel des tarifs des locations</h4>
@@ -62,8 +66,25 @@ Auteur : Daniele Castro
 
 
 
+<script type="text/javascript">
+      var div = document.getElementById('test1');
+      var dateDebut  = document.getElementById("dateDebut");
+      var dateFin   = document.getElementById("dateFin");
 
 
+      function afficher() {
+
+        var somme = dateFin.value.getTime() - dateDebut.value.getTime();
+        var a = somme / (1000 * 3600 * 24);
+        div.innerHTML = somme / (1000 * 3600 * 24);
+
+      }
+
+      dateDebut.onchange = afficher;
+      dateFin.onchange = afficher;
+
+
+   </script>
 
 
 
