@@ -58,18 +58,18 @@ Auteur : Daniele Castro
 
 
   <a href="{% url 'location:donneeLocationClient' velo.vel_id%}" class="btn btn-primary" role="button" aria-pressed="true" >Annuler</a>
-  <input type="submit" value="Envoyer" class="btn btn-primary" href="{% url 'location:finaliserLocationClient' velo.vel_id%}" >
+  <input id="btnEnvoyer" type="submit" value="Envoyer" class="btn btn-primary" href="{% url 'location:finaliserLocationClient' velo.vel_id%}" >
 
 </form>
 
 
 
 <script type="text/javascript">
-      
+      document.getElementById("btnEnvoyer").disabled = true;
       var newDiv = document.createElement("div");
       newDiv.setAttribute("id", "divJs");
-      var currentDiv = document.getElementById('dateFinDiv');
-      currentDiv.appendChild(newDiv);
+      var dateFinDiv = document.getElementById('dateFinDiv');
+      dateFinDiv.appendChild(newDiv);
 
 
 
@@ -90,9 +90,12 @@ Auteur : Daniele Castro
         else{
             // si la différence de date dépasse les 1 ans ...
             if (diff_en_jours > 365){
+              
               textAfficher = 'ATTENTION : la location ne doit pas dépasser 1 an.';}
             // si la différence est d'au moins 90 jours(3 mois) ..
             else if (diff_en_jours > 90){
+              document.getElementById("btnEnvoyer").disabled = false;
+
               var somme = 50; // les trois mois de départ
               var jours = diff_en_jours - 90 // enlever les 3 mois minimum pour avoir unqiuement les jours en plus 
               somme += Math.round(jours / 30) * 5 // calcul de la somme 
@@ -110,11 +113,6 @@ Auteur : Daniele Castro
       dateDebut.onchange = afficher;
       dateFin.onchange = afficher;
    </script>
-
-
-
-
-
 
 
 
