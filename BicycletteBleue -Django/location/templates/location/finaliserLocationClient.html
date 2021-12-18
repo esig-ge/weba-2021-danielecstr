@@ -6,6 +6,7 @@ Auteur : Daniele Castro
 {% extends 'template_base.html' %}
 {% load static %}
 
+
 {% block contenu %}
 <!-- Google Font -->
         <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
@@ -22,7 +23,7 @@ Auteur : Daniele Castro
      {%  csrf_token %}
   <div class="form-group">
     <label>Date de debut<sup style="color: red">*</sup> :</label>
-    <input  id="dateDebut"class="form-control" type="date" placeholder="Date debut" for={{formLocationVelo.date_debut}}
+    <input  id="dateDebut" class="form-control" type="date" placeholder="Date debut" for={{formLocationVelo.date_debut}}
   </div>
   <div id ="dateFinDiv"   class="form-group">
     <label>Date de fin<sup style="color: red">*</sup> :</label>
@@ -55,11 +56,8 @@ Auteur : Daniele Castro
 </table>
 </div>
 <br><br>
-
-
   <a href="{% url 'location:donneeLocationClient' velo.vel_id%}" class="btn btn-primary" role="button" aria-pressed="true" >Annuler</a>
   <input id="btnEnvoyer" type="submit" value="Envoyer" class="btn btn-primary" href="{% url 'location:finaliserLocationClient' velo.vel_id%}" >
-
 </form>
 
 
@@ -69,16 +67,13 @@ Auteur : Daniele Castro
       var newDiv = document.createElement("div");
       newDiv.setAttribute("id", "divJs");
       var dateFinDiv = document.getElementById('dateFinDiv');
-      dateFinDiv.appendChild(newDiv);
-
-
+      dateFinDiv.appendChild(newDiv); // Permet de rajouter une nouvelle div dans la div ou il y a l'input de la date de fin (en tant qu'enfant) et devient donc le frère/soeur de l'input
 
       var dateDebut  = document.getElementById("dateDebut");
       var dateFin   = document.getElementById("dateFin");
       var textAfficher = ''; // Variable qui permet de stocker ce que nous allons afficher
-
       // Permet d'afficher lorsque nous modifions la date de debut et la date de fin
-      function afficher() {
+      var afficher = function () {
         // Permet de calculer la différence entre deux dates
         var diff_en_temps = new Date(dateFin.value).getTime() - new Date(dateDebut.value).getTime();
         var diff_en_jours = diff_en_temps / (1000 * 3600 * 24);
@@ -90,28 +85,26 @@ Auteur : Daniele Castro
         else{
             // si la différence de date dépasse les 1 ans ...
             if (diff_en_jours > 365){
-              
-              textAfficher = 'ATTENTION : la location ne doit pas dépasser 1 an.';}
+              textAfficher = 'ATTENTION : la location ne doit pas dépasser 1 an.';
+                document.getElementById("btnEnvoyer").disabled = true;}
             // si la différence est d'au moins 90 jours(3 mois) ..
             else if (diff_en_jours > 90){
               document.getElementById("btnEnvoyer").disabled = false;
-
               var somme = 50; // les trois mois de départ
               var jours = diff_en_jours - 90 // enlever les 3 mois minimum pour avoir unqiuement les jours en plus 
               somme += Math.round(jours / 30) * 5 // calcul de la somme 
               textAfficher = "Total de la location : "+ somme + " + 150 (la caution) = " + (somme + 150) + " CHF";
             }
             // si la différence de jours est en dessous de 3 mois alors..
-            else{textAfficher = 'ATTENTION : la location doit durer au minimum 3 mois.';}
-        
+            else{textAfficher = 'ATTENTION : la location doit durer au minimum 3 mois.';
+                document.getElementById("btnEnvoyer").disabled = true;}
         }
         // permet d'afficher le texte adéquat
         newDiv.innerHTML = textAfficher;
         }
-
       //lorsqu'on change un des deux input nous entrons dans la fonction "afficher"
-      dateDebut.onchange = afficher;
-      dateFin.onchange = afficher;
+      dateDebut.addEventListener("change", afficher);
+      dateFin.addEventListener("change", afficher);
    </script>
 
 
