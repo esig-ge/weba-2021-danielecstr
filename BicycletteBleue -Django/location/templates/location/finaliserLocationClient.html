@@ -68,7 +68,7 @@ Auteur : Daniele Castro
       newDiv.setAttribute("id", "divJs");
       var dateFinDiv = document.getElementById('dateFinDiv');
       dateFinDiv.appendChild(newDiv); // Permet de rajouter une nouvelle div dans la div ou il y a l'input de la date de fin (en tant qu'enfant) et devient donc le frère/soeur de l'input
-
+      var a = '';
       var dateDebut  = document.getElementById("dateDebut");
       var dateFin   = document.getElementById("dateFin");
       var textAfficher = ''; // Variable qui permet de stocker ce que nous allons afficher
@@ -100,17 +100,19 @@ Auteur : Daniele Castro
                 document.getElementById("btnEnvoyer").disabled = true;}
         }
         // permet d'afficher le texte adéquat avec une nouvelle balise "h6"
-        var newH1 = document.createElement("H6");
-        newDiv.appendChild(newH1);
-        newH1.innerHTML = textAfficher;
+          if (a === ''){
+           var newH6 = document.createElement("H6");
+           newH6.setAttribute("id", "H6div");
+           newDiv.appendChild(newH6);
+           newH6.innerHTML = textAfficher;
+           a = "a";
+        }
+          else{
+           document.getElementById("H6div").innerHTML = textAfficher;
+        }
         }
       //lorsqu'on change un des deux input nous entrons dans la fonction "afficher"
       dateDebut.addEventListener("change", afficher);
       dateFin.addEventListener("change", afficher);
    </script>
-
-
-
-
-
 {% endblock %}
