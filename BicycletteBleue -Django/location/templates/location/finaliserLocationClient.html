@@ -99,8 +99,10 @@ Auteur : Daniele Castro
             else{textAfficher = 'ATTENTION : la location doit durer au minimum 3 mois.';
                 document.getElementById("btnEnvoyer").disabled = true;}
         }
-        // permet d'afficher le texte adéquat
-        newDiv.innerHTML = textAfficher;
+        // permet d'afficher le texte adéquat avec une nouvelle balise "h6"
+        var newH1 = document.createElement("H6");
+        newDiv.appendChild(newH1);
+        newH1.innerHTML = textAfficher;
         }
       //lorsqu'on change un des deux input nous entrons dans la fonction "afficher"
       dateDebut.addEventListener("change", afficher);
