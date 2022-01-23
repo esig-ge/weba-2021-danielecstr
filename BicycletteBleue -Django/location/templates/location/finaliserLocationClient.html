@@ -68,7 +68,6 @@ Auteur : Daniele Castro
       newDiv.setAttribute("id", "divJs");
       var dateFinDiv = document.getElementById('dateFinDiv');
       dateFinDiv.appendChild(newDiv); // Permet de rajouter une nouvelle div dans la div ou il y a l'input de la date de fin (en tant qu'enfant) et devient donc le frère/soeur de l'input
-
       var dateDebut  = document.getElementById("dateDebut");
       var dateFin   = document.getElementById("dateFin");
       var textAfficher = ''; // Variable qui permet de stocker ce que nous allons afficher
@@ -99,16 +98,19 @@ Auteur : Daniele Castro
             else{textAfficher = 'ATTENTION : la location doit durer au minimum 3 mois.';
                 document.getElementById("btnEnvoyer").disabled = true;}
         }
-        // permet d'afficher le texte adéquat
-        newDiv.innerHTML = textAfficher;
+        // permet d'afficher le texte adéquat avec une nouvelle balise "h6"
+          if (document.getElementById("textAfficherH6") === null){
+           var newH6 = document.createElement("H6");
+           newH6.setAttribute("id", "textAfficherH6");
+           newDiv.appendChild(newH6);
+           newH6.innerHTML = textAfficher;
+        }
+          else{
+           document.getElementById("textAfficherH6").innerHTML = textAfficher;
+        }
         }
       //lorsqu'on change un des deux input nous entrons dans la fonction "afficher"
       dateDebut.addEventListener("change", afficher);
       dateFin.addEventListener("change", afficher);
    </script>
-
-
-
-
-
 {% endblock %}
