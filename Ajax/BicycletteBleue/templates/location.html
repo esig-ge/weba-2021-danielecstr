@@ -15,6 +15,7 @@ Auteur : Daniele Castro
 <h1 class="titre" style="margin-left: 10%">Liste des locations</h1>
 <br>
 <br>
+<br>
 <div class="table-responsive">
  <table class="table">
   <thead class="thead-dark" >
@@ -25,34 +26,13 @@ Auteur : Daniele Castro
       <th scope="col">Nom vélo</th>
       <th scope="col">Date début</th>
       <th scope="col">Date fin</th>
-      <th scope="col">Temps restant</th>
       <th scope="col">Montant</th>
-      <th scope="col"></th>
-      <th scope="col"></th>
     </tr>
   </thead>
 
-  <tbody id="idDiv">
-  {% for loc in locations %}
-    <tr>
-      <th scope="row">{{ loc.loc_num}}</th>
-      <td><a href="{% url 'location:detailsLocation' loc.loc_num%}">{{ loc.loc_statut}}</a></td>
-      <td><a>{{loc.loc_cli_id.cli_nom}} {{loc.loc_cli_id.cli_prenom}}</a></td>
-      <td>{{loc.loc_vel_id.vel_nom}}</td>
-      <td>{{loc.loc_date_debut}}</td>
-      <td>{{loc.loc_date_fin}}</td><td></td>
-      <td>{{loc.montant}}</td>
-      <td><a href="">Modifier</a></td>
-      <td><a href=""><img class="imagePoubelle" src="{% static 'location/img/poubelle.png' %}" alt="Image"></a></td>
-    </tr>
-  {% endfor %}
-  </tbody>
+<tbody id="idDiv">
+</tbody>
 </table>
-</div>
-<br>
-<div id="locationsDiv">
-
-
 </div>
 
 
@@ -62,18 +42,23 @@ Auteur : Daniele Castro
 <br><br><br><br><br><br>
 
 <script type="text/javascript">
-     var locationsDiv = document.getElementById("locationsDiv")
+     var locationsDiv = document.getElementById("idDiv")
      function onstart(){
         const xhr = new XMLHttpRequest();
         const url = '/listelocation'
 
         xhr.responseType = 'json';
         xhr.open('GET', url);
-
         xhr.onload = function (){
          locs = xhr.response.locations;
          locs.forEach(loc =>
-             locationsDiv.innerHTML += loc.loc_id)
+             locationsDiv.innerHTML += '<td>' + loc.loc_num + '</td>'
+                                     + '<td>' + loc.loc_statut + '</td>'
+                                     + '<td>' + loc.loc_cli_id + '</td>'
+                                     + '<td>' + loc.loc_vel_id + '</td>'
+                                     + '<td>' + loc.loc_date_debut + '</td>'
+                                     + '<td>' + loc.loc_date_fin + '</td>'
+                                     + '<td>' + loc.montant + '</td>')
      }
          xhr.send()
      }
