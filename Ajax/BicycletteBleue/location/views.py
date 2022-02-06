@@ -12,6 +12,10 @@ def locationAcceuil2(request):
     return render(request, 'locationAcceuil2.html')
 
 def listelocation(request):
+    test1()
+    print("test2")
+
+
     locationAll = Location.objects.all()
     data =  {}
     locations = []
@@ -19,6 +23,10 @@ def listelocation(request):
         locations.append(loc.serialize())
     data['locations'] = locations
     return  JsonResponse(data)
+
+def test1():
+    print("test1")
+
 
 def location(request):
     locationAll = Location.objects.all()
