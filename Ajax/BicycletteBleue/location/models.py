@@ -12,6 +12,19 @@ class Client(models.Model):
     cli_tel = models.CharField(max_length=100)
     cli_membre = models.CharField( max_length=100)
     cli_num = models.IntegerField()
+    def serialize(self):
+        cli = {
+            "cli_id" : self.cli_id,
+            "cli_nom": self.cli_nom,
+            "cli_prenom": self.cli_prenom,
+            "cli_adresseposte": self.cli_adresseposte,
+            "cli_date_naissance": self.cli_date_naissance,
+            "cli_mail": self.cli_mail,
+            "cli_tel": self.cli_tel,
+            "cli_membre": self.cli_membre,
+            "cli_num": self.cli_num,
+        }
+        return cli
     def __str__(self):
         return self.cli_nom  + " " + self.cli_prenom + " (" + str(self.cli_date_naissance) + ")"
     class Meta:
@@ -57,8 +70,8 @@ class Location(models.Model):
             "loc_id" : self.loc_id,
             "loc_date_debut": self.loc_date_debut,
             "loc_date_fin": self.loc_date_fin,
-            "loc_vel_id": self.loc_vel_id.vel_id,
-            "loc_cli_id": self.loc_cli_id.cli_id,
+            "loc_vel_id": self.loc_vel_id.vel_nom,
+            "loc_cli_id": self.loc_cli_id.cli_nom + ' ' + self.loc_cli_id.cli_prenom,
             "loc_statut": self.loc_statut,
             "loc_num": self.loc_num,
             "montant": self.montant,

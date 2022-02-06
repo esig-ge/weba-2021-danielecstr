@@ -22,14 +22,13 @@ Auteur : Daniele Castro
     <tr>
       <th scope="col">Numéro location</th>
       <th scope="col">Statut location</th>
-      <th scope="col">Nom client</th>
+      <th scope="col">Nom prénom client</th>
       <th scope="col">Nom vélo</th>
       <th scope="col">Date début</th>
       <th scope="col">Date fin</th>
       <th scope="col">Montant</th>
     </tr>
   </thead>
-
 <tbody id="idDiv">
 </tbody>
 </table>
@@ -46,14 +45,14 @@ Auteur : Daniele Castro
      function onstart(){
         const xhr = new XMLHttpRequest();
         const url = '/listelocation'
-
         xhr.responseType = 'json';
         xhr.open('GET', url);
+
         xhr.onload = function (){
          locs = xhr.response.locations;
          locs.forEach(loc =>
              locationsDiv.innerHTML += '<td>' + loc.loc_num + '</td>'
-                                     + '<td>' + loc.loc_statut + '</td>'
+                                     + '<td>' + '<a href="' + loc.loc_num + ' ">' + loc.loc_statut + '</a> </td>'
                                      + '<td>' + loc.loc_cli_id + '</td>'
                                      + '<td>' + loc.loc_vel_id + '</td>'
                                      + '<td>' + loc.loc_date_debut + '</td>'
@@ -65,5 +64,4 @@ Auteur : Daniele Castro
 
   onstart()
 </script>
-
 {% endblock %}

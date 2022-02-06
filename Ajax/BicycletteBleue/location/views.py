@@ -18,6 +18,10 @@ def listelocation(request):
     for loc in locationAll:
         locations.append(loc.serialize())
     data['locations'] = locations
+
+
+
+
     return  JsonResponse(data)
 
 
