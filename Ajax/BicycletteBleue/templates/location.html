@@ -62,7 +62,7 @@ Auteur : Daniele Castro
 <br><br><br><br><br><br>
 
 <script type="text/javascript">
-     var locationsDiv = document.getElementById("locations")
+     var locationsDiv = document.getElementById("locationsDiv")
      function onstart(){
         const xhr = new XMLHttpRequest();
         const url = '/listelocation'
@@ -72,12 +72,13 @@ Auteur : Daniele Castro
 
         xhr.onload = function (){
          locs = xhr.response.locations;
-         console.log(locs)
+         locs.forEach(loc =>
+             locationsDiv.innerHTML += loc.loc_id)
      }
          xhr.send()
      }
 
-
+  onstart()
 </script>
 
 {% endblock %}
