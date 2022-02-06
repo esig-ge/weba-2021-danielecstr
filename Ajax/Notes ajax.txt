@@ -1,0 +1,2 @@
+Ecrire code pour JSON dans la view 
+Ecrire code js pour recuperer 

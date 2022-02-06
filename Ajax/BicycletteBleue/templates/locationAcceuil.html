@@ -1,0 +1,170 @@
+<!-- Auteur : Daniele Castro
+    source template :  https://htmlcodex.com/car-wash-website-template
+-->
+
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>La bicyclette Bleue</title>
+        <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+        <!-- Google Font -->
+        <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+        <!-- CSS Libraries -->
+        <link rel="stylesheet" type="text/css" href="{% static 'location/css/bootstrap.min.css' %}">
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+
+        <!-- Template Stylesheet -->
+        <link rel="stylesheet" type="text/css" href="{% static 'location/css/style.css' %}">
+
+
+                <!-- Google Font -->
+        <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+        <!-- CSS Libraries -->
+        <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+        <link href="{% static 'location/lib/flaticon/font/flaticon.css' %}" rel="stylesheet">
+        <link href="{% static 'location/lib/animate/animate.min.css' %}" rel="stylesheet">
+        <link href="{% static 'location/lib/owlcarousel/assets/owl.carousel.min.css' %}" rel="stylesheet">
+
+    </head>
+    <body>
+        <!-- Top Bar Start -->
+        <div class="top-bar">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-lg-4 col-md-12">
+                        <div class="logo">
+                            <a href="{% url 'location:index2'%}">
+                                <img src="{% static 'location/img/logo.png' %}" alt="Image">
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-lg-8 col-md-7 d-none d-lg-block">
+                        <div class="row">
+                            <div class="col-4">
+                                <div class="top-bar-item">
+                                    <div class="top-bar-icon">
+                                        <i class="far fa-clock"></i>
+                                    </div>
+                                    <div class="top-bar-text">
+                                        <h3>Horaires d'ouverture</h3>
+                                        <p>Vendredi et Samedi</p>
+                                        <p>14:00 - 19:00</p>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="top-bar-item">
+                                    <div class="top-bar-icon">
+                                        <i class="far fa-envelope"></i>
+                                    </div>
+                                    <div class="top-bar-text">
+                                        <h3>Nous contacter</h3>
+                                        <p>info@bicyclettebleue.ch</p>
+                                        <a href="https://www.instagram.com/bicyclette_bleue/"><img src="{% static 'location/img/instagram.png' %}" alt="Image" style="width: 35px; height: 35px"></a>
+                                        <a href="https://www.facebook.com/bicyclettebleuegeneve/"><img src="{% static 'location/img/facebook.png' %}" alt="Image" style="width: 37px; height: 37px"></a>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Top Bar End -->
+
+        <!-- Nav Bar Start -->
+        <div class="nav-bar">
+            <div class="container">
+                <nav class="navbar navbar-expand-lg bg-dark navbar-dark">
+                    <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
+                        <div class="navbar-nav mr-auto">
+                            <a href="" class="nav-item nav-link">Accueil</a>
+                            <div class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Partie client</a>
+                                <div class="dropdown-menu">
+                                    <a href="" class="dropdown-item">Mes locations</a>
+                                    <a href="" class="dropdown-item">Reserver un vélo</a>
+                                    <a href="" class="dropdown-item">Mon compte</a>
+                                    <a href="" class="dropdown-item">Mes réparations</a>
+
+                                </div>
+                            </div>
+                            <div class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Partie membre</a>
+                                <div class="dropdown-menu">
+                                    <a href="{% url 'location:location' %}" class="dropdown-item">Location</a>
+                                    <a href="" class="dropdown-item">Location en attente</a>
+                                    <a href="" class="dropdown-item">Client</a>
+                                    <a href="" class="dropdown-item">Réparations</a>
+                                    <a href="" class="dropdown-item">Statistique</a>
+                                </div>
+                            </div>
+                            <div class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Stock</a>
+                                <div class="dropdown-menu">
+                                    <a href="" class="dropdown-item">Vélos</a>
+                                    <a href="" class="dropdown-item">Pièces de vélos</a>
+                                    <a href="" class="dropdown-item">Locaux</a>
+                                </div>
+                            </div>
+                            <div class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Partie client</a>
+                                <div class="dropdown-menu">
+                                    <a href="" class="dropdown-item">Mes locations</a>
+                                    <a href="" class="dropdown-item">Reserver un vélo</a>
+                                    <a href="" class="dropdown-item">Mon compte</a>
+                                </div>
+                            </div>
+                            <a href="" class="nav-item nav-link">A propos</a>
+                            <a href="" class="nav-item nav-link">Contact</a>
+
+                        </div>
+
+                    </div>
+                </nav>
+            </div>
+        </div>
+        <!-- Nav Bar End -->
+
+
+        <!-- Pre Loader -->
+        <div id="loader" class="show">
+            <div class="loader"></div>
+        </div>
+
+        <!-- JavaScript Libraries -->
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+        <script src="{% static 'location/lib/owlcarousel/owl.carousel.min.js' %}"></script>
+        <script src="{% static 'location/js/main.js' %}"></script>
+
+{% block contenu %}{% endblock %}
+
+<br><br><br>
+
+
+<foot class="text-center text-lg-start bg-light text-muted">
+    <!-- Copyright -->
+  <div class="text-center p-4" style="background-color: rgba(0, 0, 0, 0.05);">
+    © 2021 Copyright :
+    <a class="text-reset fw-bold">Bicyclette Bleue</a>
+  </div>
+  <!-- Copyright -->
+
+</foot>
+
+
+    </body>
+</html>
