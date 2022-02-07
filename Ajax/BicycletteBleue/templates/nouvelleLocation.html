@@ -1,0 +1,67 @@
+<!---
+Auteur : Daniele Castro
+-->
+
+{% extends 'locationAcceuil.html' %}
+{% load static %}
+
+{% block contenu %}
+
+        <!-- Google Font -->
+        <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+        <!-- CSS Libraries -->
+        <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+        <link href="{% static 'location/lib/flaticon/font/flaticon.css' %}" rel="stylesheet">
+        <link href="{% static 'location/lib/animate/animate.min.css' %}" rel="stylesheet">
+        <link href="{% static 'location/lib/owlcarousel/assets/owl.carousel.min.css' %}" rel="stylesheet">
+
+<form style="margin-left: 25% ; margin-right: 30%" action="" method="POST">
+     {%  csrf_token %}
+<div>
+    <br>
+    <h1>Ajouter une location</h1>
+    <br>
+  <div class="form-group">
+    <label>Statut : </label>
+    <select  class="form-control"  placeholder="Statut" for={{formLocation.loc_statut}}
+  </div>
+
+  <div class="form-group">
+    <label>Client :</label>
+    <select  class="form-control"  placeholder="Client" for={{formLocation.loc_cli_id}}
+    <br>
+  </div>
+
+  <div class="form-group">
+    <label>Date de debut :</label>
+    <input  class="form-control" type="date" placeholder="Date debut" for={{formLocation.loc_date_debut}}
+  </div>
+
+  <div class="form-group">
+    <label>Date de fin :</label>
+    <input  class="form-control" type="date" placeholder="Date fin" for={{formLocation.loc_date_fin}}
+     <a style="color: red">{{messageErreur}}</a><br>
+  </div>
+
+  <div class="form-group">
+    <label>Velo :</label>
+    <select  class="form-control"  placeholder="Date fin" for={{formLocation.loc_vel_id}}
+  </div>
+
+  <div class="form-group">
+    <label>Numero location : </label>
+    <input  class="form-control"  placeholder="Numéro location" for={{formLocation.loc_num}}
+  </div>
+    <a href="{% url 'location:location'%}"  class="btn btn-primary">Annuler</a>
+    <input type="submit" value="Envoyer" class="btn btn-primary" >
+    <br>
+    <br>
+</div>
+</form>
+
+
+<br><br>
+
+{% endblock contenu %}

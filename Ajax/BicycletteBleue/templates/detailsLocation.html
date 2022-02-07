@@ -1,0 +1,57 @@
+<!---
+Auteur : Daniele Castro
+-->
+{% extends 'locationAcceuil.html' %}
+{% load static %}
+{% block contenu %}
+
+        <link href="{% static 'location/css/bootstrap.min.css' %}" rel="stylesheet">
+        <link href="{% static 'location/lib/flaticon/font/flaticon.css' %}" rel="stylesheet">
+        <link href="{% static 'location/lib/animate/animate.min.css' %}" rel="stylesheet">
+        <link href="{% static 'location/lib/owlcarousel/assets/owl.carousel.min.css' %}" rel="stylesheet">
+
+
+    <br>
+    <h1 class="detailLocation"> Les détails de la location :</h1>
+    <br>
+    <div class="detailLocation">
+         <div style="border: 1px solid ; text-align: center">
+            <p><b><u>Tarif de la location</u></b></p>
+            <p>Le prix de la location est de : {{ prix }} CHF</p>
+            <p>+la caution de 150 CHF</p>
+            <p><b>Montant total : {{ montantTotal }} CHF</b></p>
+        </div>
+    <br>
+        <div style="border: 1px solid ; text-align: center">
+        <p>Le statut de la location numéro {{ locationvelo.loc_num }} est :  <b>{{ locationvelo.loc_statut }}</b></p>
+        {% if not locationvelo.termine %}
+        <p>La location à commencé le <b>{{ locationvelo.loc_date_debut }}</b> et prends fin le <b>{{ locationvelo.loc_date_fin}}.</b></p>
+        <p>La location se termine dans {{locationvelo.date_fin|timeuntil:date}}.</p>
+        {% else %}
+        <p>La location à commencé le <b>{{ locationvelo.loc_date_debut }}</b> et a prit fin le <b>{{ locationvelo.loc_date_fin}}.</b></p>
+        <p>La location est terminé.</p>
+        {% endif %}
+        </div>
+        <br>
+        <div style="border: 1px solid ; text-align: center">
+        <p><u>Le client concerné par cette location est :</u><br>
+        Nom : {{ locationvelo.loc_cli_id.cli_nom }} <br>
+        Prenom : {{ locationvelo.loc_cli_id.cli_prenom }} <br>
+        Adresse : {{ locationvelo.loc_cli_id.cli_adresseposte }} <br>
+        Mail : {{ locationvelo.loc_cli_id.cli_mail }} <br>
+        Telephone : {{ locationvelo.loc_cli_id.cli_tel }} </p>
+        </div>
+        <br>
+        <div style="border: 1px solid ; text-align: center">
+        <p><u>Le vélo concerné par cette location est :</u><br>
+        Nom : {{ locationvelo.loc_vel_id.vel_nom }} <br>
+        Numéro du cadre : {{ locationvelo.loc_vel_id.vel_num_cadre }}<br>
+        Marque: {{ locationvelo.loc_vel_id.vel_marque}} <br>
+        Couleur : {{ locationvelo.loc_vel_id.vel_couleur }} <br>
+        Type : {{ locationvelo.loc_vel_id.vel_type }} <br>
+        Remarque : {{ messageDescriptionVelo }}</p>
+        </div>
+        <a href="{% url 'location:location' %}"> <--- Retour aux locations </a>
+    </div>
+
+{% endblock contenu %}

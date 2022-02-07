@@ -1,0 +1,68 @@
+<!---
+Auteur : Daniele Castro
+-->
+{% extends 'locationAcceuil.html' %}
+{% load static %}
+{% load mathfilters %}
+{% block contenu %}
+
+<!-- CSS Libraries -->
+<link href="{% static 'location/css/bootstrap.min.css' %}" rel="stylesheet">
+<link href="{% static 'location/lib/flaticon/font/flaticon.css' %}" rel="stylesheet">
+<link href="{% static 'location/lib/animate/animate.min.css' %}" rel="stylesheet">
+<link href="{% static 'location/lib/owlcarousel/assets/owl.carousel.min.css' %}" rel="stylesheet">
+<br>
+<h1 class="titre" style="margin-left: 10%">Liste des locations</h1>
+<br>
+<br>
+<br>
+<div class="table-responsive">
+ <table class="table">
+  <thead class="thead-dark" >
+    <tr>
+      <th scope="col">Numéro location</th>
+      <th scope="col">Statut location</th>
+      <th scope="col">Nom prénom client</th>
+      <th scope="col">Nom vélo</th>
+      <th scope="col">Date début</th>
+      <th scope="col">Date fin</th>
+      <th scope="col">Montant</th>
+    </tr>
+  </thead>
+<tbody id="idDiv">
+</tbody>
+</table>
+</div>
+
+
+<!-- Button -->
+<a href="{% url 'location:nouvelleLocation' %}" class="btn btn-primary" role="button" aria-pressed="true" style="margin-left: 10% ;margin-bottom:20px">Ajouter une nouvelle location</a>
+
+<br><br><br><br><br><br>
+
+<script type="text/javascript">
+     var locationsDiv = document.getElementById("idDiv")
+     function onstart(){
+        const xhr = new XMLHttpRequest();
+        const url = '/listelocation'
+        xhr.responseType = 'json';
+        xhr.open('GET', url);
+
+        xhr.onload = function (){
+         locs = xhr.response.locations;
+         locs.forEach(loc =>
+             locationsDiv.innerHTML += '<td>' + loc.loc_num + '</td>'
+                                     + '<td>' + '<a href="' + loc.loc_num + ' ">' + loc.loc_statut + '</a> </td>'
+                                     + '<td>' + loc.loc_cli_id + '</td>'
+                                     + '<td>' + loc.loc_vel_id + '</td>'
+                                     + '<td>' + loc.loc_date_debut + '</td>'
+                                     + '<td>' + loc.loc_date_fin + '</td>'
+                                     + '<td>' + loc.montant + '</td>')
+     }
+         xhr.send()
+         console.log("test1")
+     }
+   console.log("test2")
+  onstart()
+</script>
+{% endblock %}
