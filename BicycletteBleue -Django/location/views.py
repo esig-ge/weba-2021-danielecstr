@@ -187,6 +187,7 @@ def nouvelleLocation(request):
                 nbmax = Location.objects.latest('loc_id').loc_id
                 locaVelo = Location_Velo(loc_statut=formLocation.cleaned_data.get('loc_statut'),date_fin=formLocationVelo.cleaned_data.get('date_fin'), date_debut=formLocationVelo.cleaned_data.get('date_debut'),lv_loc_id_id=nbmax, id=nbmax,lv_vel_id_id=formLocationVelo.cleaned_data.get('lv_vel_id').vel_id)
                 locaVelo.lv_vel_id.vel_statut= "Reservé"
+                locaVelo.loc_num = nb
                 locaVelo.lv_vel_id.save()
                 locaVelo.save()
                 return redirect('/location')
