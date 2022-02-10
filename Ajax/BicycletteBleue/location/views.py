@@ -1,3 +1,5 @@
+import time
+
 from django.http import JsonResponse
 from django.shortcuts import render, redirect
 from .models import Location
@@ -12,10 +14,6 @@ def locationAcceuil2(request):
     return render(request, 'locationAcceuil2.html')
 
 def listelocation(request):
-    test1()
-    print("test2")
-
-
     locationAll = Location.objects.all()
     data =  {}
     locations = []
@@ -24,8 +22,6 @@ def listelocation(request):
     data['locations'] = locations
     return  JsonResponse(data)
 
-def test1():
-    print("test1")
 
 
 def location(request):

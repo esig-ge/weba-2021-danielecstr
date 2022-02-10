@@ -43,26 +43,25 @@ Auteur : Daniele Castro
 <script type="text/javascript">
      var locationsDiv = document.getElementById("idDiv")
      function onstart(){
-        const xhr = new XMLHttpRequest();
-        const url = '/listelocation'
-        xhr.responseType = 'json';
-        xhr.open('GET', url);
-
-        xhr.onload = function (){
-         locs = xhr.response.locations;
-         locs.forEach(loc =>
-             locationsDiv.innerHTML += '<td>' + loc.loc_num + '</td>'
-                                     + '<td>' + '<a href="' + loc.loc_num + ' ">' + loc.loc_statut + '</a> </td>'
-                                     + '<td>' + loc.loc_cli_id + '</td>'
-                                     + '<td>' + loc.loc_vel_id + '</td>'
-                                     + '<td>' + loc.loc_date_debut + '</td>'
-                                     + '<td>' + loc.loc_date_fin + '</td>'
-                                     + '<td>' + loc.montant + '</td>')
-     }
-         xhr.send()
+         const xhr = new XMLHttpRequest();
+         const url = '/listelocation'
+         xhr.responseType = 'json';
+         xhr.open('GET', url);
+         xhr.onload = function (){
+             locs = xhr.response.locations;
+             locs.forEach(loc =>
+                 locationsDiv.innerHTML += '<td>' + loc.loc_num + '</td>'
+                     + '<td>' + '<a href="' + loc.loc_num + ' ">' + loc.loc_statut + '</a> </td>'
+                     + '<td>' + loc.loc_cli_id + '</td>'
+                     + '<td>' + loc.loc_vel_id + '</td>'
+                     + '<td>' + loc.loc_date_debut + '</td>'
+                     + '<td>' + loc.loc_date_fin + '</td>'
+                     + '<td>' + loc.montant + '</td>')
+             console.log("test2")
+         }
          console.log("test1")
+         xhr.send()
      }
-   console.log("test2")
   onstart()
 </script>
 {% endblock %}
