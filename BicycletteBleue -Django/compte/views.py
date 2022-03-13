@@ -5,6 +5,8 @@ Auteur : Fatma Aydin
 from django.contrib.auth.hashers import make_password
 from django.shortcuts import render, redirect
 from django.contrib.auth.forms import UserCreationForm
+from django.views.decorators.csrf import csrf_exempt
+
 from .forms import InscriptionForm
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
@@ -62,7 +64,7 @@ def inscriptionPage(request):
     }
     return render(request, 'compte/inscription.html', context)
 
-
+@csrf_exempt
 def loginPage(request):
     context={
     }
@@ -74,7 +76,7 @@ def loginPage(request):
             login(request, user)
             return redirect('/')
         else:
-            messages.info(request, "Nom d'utilisateur et/ou mot de passe erroné")
+            messages.info(request, "Username or password invalid")
     return render(request, 'compte/login.html', context)
 
 
