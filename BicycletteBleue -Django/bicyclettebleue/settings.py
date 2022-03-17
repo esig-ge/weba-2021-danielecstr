@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-^ov+mlt7k=93rw4%-r_wx^ido*t2p^8riehko*(cwok3vd(i*@
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['bicyclettebleue.pythonanywhere.com', '127.0.0.1']
+ALLOWED_HOSTS = ['bicyclettebleue.pythonanywhere.com', '127.0.0.1', 'localhost']
 
 
 # Application definition
@@ -49,6 +49,8 @@ INSTALLED_APPS = [
     'reparation',
     'statistique',
     'bootstrap_datepicker_plus',
+    'django_otp',
+    'django_otp.plugins.otp_totp',
 ]
 
 MIDDLEWARE = [
@@ -59,6 +61,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django_otp.middleware.OTPMiddleware',
 ]
 
 ROOT_URLCONF = 'bicyclettebleue.urls'
