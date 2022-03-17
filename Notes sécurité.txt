@@ -1,0 +1,7 @@
+Le CSRF middleware et le template tag CSRF sont une protection facile à mettre en place contre les attaques de type CROSS SITE. Ces types d'attaques consiste à injecter du code malicieux à travers le bouton d'un formulaire ou du javascript.
+- https://python.doctor/page-django-csrf-token-securite-formulaires-python-ajax-post-jquery-anguarjs
+On peut le désactiver pour des vues spécifique comme c'est expliqueé sur ce site :
+https://stackoverflow.com/questions/11374382/how-can-i-disable-djangos-csrf-protection-only-in-certain-cases
+
+brut force:
+https://www.youtube.com/watch?v=myFYAQA6l8s

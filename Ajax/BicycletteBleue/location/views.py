@@ -30,10 +30,9 @@ def location(request):
     locations = []
     for loc in locationAll:
             locations.append(loc)
-    a = "aasd"
+
     context = {
         'locations' : locations,
-        'a' : a
     }
     return render(request, 'location.html', context)
 
